@@ -206,7 +206,7 @@ export default function HeroSection() {
               ))}
               
               {/* Main Image */}
-              <img
+              {/* <img
                 src="assets/hero-workspace.png"
                 alt="Stylized digital workspace with layered product and design panels"
                 className="relative z-[4] rounded-lg border border-white/[0.14] shadow-[0_22px_44px_rgba(0,0,0,0.25),0_0_0_1px_rgba(244,239,230,0.04),0_24px_70px_rgba(0,0,0,0.36)] aspect-[1.17/1] object-cover"
@@ -214,7 +214,7 @@ export default function HeroSection() {
                   transform: `translate3d(${tilt.x * -0.7}px, ${tilt.y * -0.7}px, 30px) rotateX(${tilt.y * -0.12}deg) rotateY(${tilt.x * 0.16}deg)`,
                   transition: 'transform 180ms ease-out'
                 }}
-              />
+              /> */}
             </div>
             
             <p className="max-w-[36ch] mt-3.5 text-[0.94rem] leading-[1.6] text-text-muted">
