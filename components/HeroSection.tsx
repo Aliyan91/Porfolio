@@ -11,11 +11,11 @@ export default function HeroSection() {
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     if (!heroRef.current) return;
-    
+
     const rect = heroRef.current.getBoundingClientRect();
     const normalizedX = (e.clientX - rect.left) / rect.width;
     const normalizedY = (e.clientY - rect.top) / rect.height;
-    
+
     setPointer({
       x: normalizedX * 100,
       y: normalizedY * 100
@@ -34,7 +34,7 @@ export default function HeroSection() {
   const { profile } = portfolioData;
 
   return (
-    <section 
+    <section
       ref={heroRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
@@ -47,27 +47,27 @@ export default function HeroSection() {
       } as React.CSSProperties}
     >
       {/* Grid Pattern Background */}
-      <div 
+      <div
         className="absolute inset-0 hero-grid-pattern opacity-[0.45] pointer-events-none z-0"
         aria-hidden="true"
       />
-      
+
       <HeroCanvas />
-      
+
       {/* Ambient Glow Effects */}
-      <div 
+      <div
         className="absolute z-[2] blur-[30px] rounded-full w-[380px] h-[380px] animate-hero-pulse"
-        style={{ 
-          bottom: '18%', 
+        style={{
+          bottom: '18%',
           left: '58%',
           background: 'radial-gradient(circle, rgba(123, 184, 168, 0.22) 0%, rgba(123, 184, 168, 0) 72%)'
         }}
         aria-hidden="true"
       />
-      <div 
+      <div
         className="absolute z-[2] blur-[30px] rounded-full w-[320px] h-[320px] animate-hero-pulse-reverse"
-        style={{ 
-          top: '4%', 
+        style={{
+          top: '4%',
           left: '6%',
           background: 'radial-gradient(circle, rgba(214, 160, 107, 0.16) 0%, rgba(214, 160, 107, 0) 72%)'
         }}
@@ -82,39 +82,39 @@ export default function HeroSection() {
               {profile.name}
             </p>
             <p className="m-0 mb-[18px] text-base">{profile.role}</p>
-            
+
             <h1 className="hero-title-gradient max-w-[12ch] mb-[18px] text-[2.4rem] md:text-[3.5rem] leading-none font-bold">
               {profile.heroTitle}
             </h1>
-            
+
             <p className="max-w-[62ch] text-base leading-[1.75] text-text-muted">
               {profile.heroIntro}
             </p>
-            
+
             <div className="flex flex-wrap gap-3 mt-5">
-              <a 
-                href="#work" 
+              <a
+                href="#work"
                 className="inline-flex items-center justify-center min-h-[46px] px-[18px] rounded-full bg-text text-[#111315] font-semibold border border-transparent hover:-translate-y-[1px] focus-visible:-translate-y-[1px] transition-transform"
               >
                 View Projects
               </a>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="inline-flex items-center justify-center min-h-[46px] px-[18px] rounded-full border border-line-strong text-text bg-white/[0.02] hover:-translate-y-[1px] focus-visible:-translate-y-[1px] transition-transform"
               >
                 Contact
               </a>
             </div>
-            
+
             <div className="inline-flex items-center gap-2.5 mt-[18px] p-3 px-3.5 border border-line rounded-lg bg-white/[0.02]">
               <span className="w-2.5 h-2.5 rounded-full bg-teal shadow-[0_0_0_6px_rgba(123,184,168,0.12)]" />
               <span className="text-text-muted text-sm">{profile.availability}</span>
             </div>
-            
+
             {/* Highlights Grid */}
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-[22px] p-0 list-none">
               {profile.heroHighlights.map((item, index) => (
-                <li 
+                <li
                   key={index}
                   className={`min-h-[92px] p-4 border border-line rounded-lg bg-gradient-to-b from-white/[0.045] to-white/[0.015] backdrop-blur-[10px] leading-[1.55] animate-hero-float hero-highlight-${index + 1}`}
                 >
@@ -126,8 +126,8 @@ export default function HeroSection() {
 
           {/* Hero Media */}
           <div className="relative z-[4]">
-            <div 
-              className="relative p-7 md:px-[22px] md:pb-[34px] min-h-[360px] md:min-h-[520px]"
+            <div
+              className="relative p-7 md:px-[22px] md:pb-[34px] min-h-[470px] md:min-h-[520px]"
               style={{
                 perspective: '1400px',
                 transformStyle: 'preserve-3d',
@@ -135,76 +135,35 @@ export default function HeroSection() {
                 transition: 'transform 180ms ease-out'
               }}
             >
-              {/* Background Layer */}
-              <div 
-                className="absolute rounded-[28px] bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/[0.08]"
-                style={{ 
-                  inset: '6% 10% 18% 8%',
-                  transform: 'translateZ(-6px)'
-                }}
-              />
-              
-              {/* Glow Layer */}
-              <div 
-                className="absolute rounded-[50%] blur-[16px]"
-                style={{ 
-                  inset: '18% 18% 24% 12%',
-                  transform: 'translateZ(-12px)',
-                  background: `radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(123, 184, 168, 0.2) 0%, rgba(123, 184, 168, 0.04) 26%, rgba(123, 184, 168, 0) 65%)`
-                }}
-              />
-              
-              {/* Rings */}
-              <div className="absolute inset-0 pointer-events-none z-[1]">
-                <span 
-                  className="absolute rounded-full border border-white/[0.1] shadow-[inset_0_0_0_1px_rgba(244,239,230,0.02)] animate-orbit"
-                  style={{ inset: '6% 6% 12% 12%' }}
-                />
-                <span 
-                  className="absolute rounded-full border border-amber/[0.14] shadow-[inset_0_0_0_1px_rgba(244,239,230,0.02)] animate-orbit-reverse"
-                  style={{ inset: '14% 18% 22% 2%' }}
-                />
-                <span 
-                  className="absolute rounded-full border border-dashed border-teal/[0.18] animate-ring-pulse"
-                  style={{ inset: '20% 4% 8% 24%' }}
-                />
+              <div className="relative z-[2] flex min-h-[410px] flex-col justify-between rounded-[28px] border border-white/[0.1] bg-gradient-to-b from-white/[0.05] to-white/[0.015] p-5 shadow-[0_24px_60px_rgba(0,0,0,0.24)] md:min-h-[450px] md:p-7">
+                <div className="flex flex-1 flex-col items-center justify-center text-center">
+                  <div className="mb-5 flex h-24 w-24 items-center justify-center rounded-full border border-teal/[0.35] bg-teal/[0.1] shadow-[0_0_0_12px_rgba(123,184,168,0.04),0_0_40px_rgba(123,184,168,0.16)]">
+                    <span className="h-11 w-11 rotate-45 rounded-xl bg-gradient-to-br from-teal to-amber shadow-[0_0_24px_rgba(123,184,168,0.35)]" />
+                  </div>
+                  <span className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-teal">Build system</span>
+                  <strong className="mt-1 text-xl">MERN + PERN</strong>
+                  <span className="mt-1 text-sm text-text-muted">auth · APIs · dashboards</span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {profile.heroSignals.map((signal) => (
+                    <div key={signal} className="flex min-h-10 items-center rounded-xl border border-white/[0.1] bg-bg/[0.55] px-3 text-sm font-semibold">
+                      <span className="mr-2.5 h-2 w-2 shrink-0 rounded-full bg-teal" />
+                      {signal}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                  {profile.heroStats.map((stat) => (
+                    <div key={stat.label} className="rounded-xl border border-white/[0.1] bg-bg/[0.55] p-3">
+                      <span className="block text-[0.68rem] uppercase tracking-[0.04em] text-text-muted">{stat.label}</span>
+                      <strong className="mt-1 block text-sm leading-[1.25]">{stat.value}</strong>
+                    </div>
+                  ))}
+                </div>
               </div>
-              
-              {/* Signal Badges */}
-              {profile.heroSignals.map((signal, index) => (
-                <div
-                  key={signal}
-                  className={`absolute z-[5] inline-flex items-center min-h-[38px] px-3.5 rounded-full text-text text-[0.82rem] font-bold tracking-[0.02em] bg-bg/[0.72] backdrop-blur-[14px] border border-white/[0.12] shadow-[0_18px_36px_rgba(0,0,0,0.22)] animate-badge-drift badge-delay-${index + 1}`}
-                  style={{
-                    ...(index === 0 && { top: '7%', left: '-4%' }),
-                    ...(index === 1 && { top: '14%', right: '4%' }),
-                    ...(index === 2 && { bottom: '20%', left: '-6%' }),
-                    ...(index === 3 && { bottom: '9%', right: '12%' }),
-                  }}
-                >
-                  <span className="w-2 h-2 mr-2.5 rounded-full bg-teal shadow-[0_0_0_7px_rgba(123,184,168,0.12)]" />
-                  {signal}
-                </div>
-              ))}
-              
-              {/* Stat Cards */}
-              {profile.heroStats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className={`absolute z-[6] min-w-[128px] md:min-w-[158px] p-3 md:p-4 md:pb-[15px] rounded-2xl bg-bg/[0.72] backdrop-blur-[14px] border border-white/[0.12] shadow-[0_18px_36px_rgba(0,0,0,0.22)] animate-stat-lift stat-delay-${index + 1}`}
-                  style={{
-                    ...(index === 0 && { top: '30%', right: '5%' }),
-                    ...(index === 1 && { bottom: '18%', left: '10%' }),
-                    ...(index === 2 && { bottom: '4%', right: '3%' }),
-                  }}
-                >
-                  <span className="block mb-1.5 text-text-muted text-[0.78rem] tracking-[0.04em] uppercase">
-                    {stat.label}
-                  </span>
-                  <strong className="block text-base leading-[1.25]">{stat.value}</strong>
-                </div>
-              ))}
-              
+
               {/* Main Image */}
               {/* <img
                 src="assets/hero-workspace.png"
@@ -216,7 +175,7 @@ export default function HeroSection() {
                 }}
               /> */}
             </div>
-            
+
             <p className="max-w-[36ch] mt-3.5 text-[0.94rem] leading-[1.6] text-text-muted">
               Full-stack portfolio built around real projects, production-style dashboards, and the stack I work with most.
             </p>
